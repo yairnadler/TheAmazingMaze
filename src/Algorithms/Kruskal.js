@@ -5,7 +5,7 @@
 import UnionFind from "../DataStructures/UnionFind";
 
 // Function to generate the maze
-export function KruskalMaze(width, height) {
+export function Kruskal(width, height) {
   // Create the union find data structure
   const uf = new UnionFind(width * height);
 

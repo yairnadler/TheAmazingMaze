@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { KruskalMaze } from "../Algorithms/KruskalMaze";
+import { Kruskal } from "../Algorithms/Kruskal";
 import "./Maze.css";
 
 const Maze = ({ width, height }) => {
   const [clickedCells, setClickedCells] = useState([]);
-  const [walls, setWalls] = useState(KruskalMaze(width, height));
+  const [walls, setWalls] = useState(Kruskal(width, height));
 
   // Generate dummy data for the table according to kruskalMaze
   const generateData = () => {
