@@ -1,0 +1,45 @@
+.grid-table {
+    border-collapse: collapse;
+    border: 2px solid rgb(255, 255, 255); /* Add border for the table */
+    width: 80%; /* Set table width to 100% of its container */
+    height: 80%; /* Set table height to 100% of its container */
+    padding: 5px; /* Add padding around the table */
+  }
+  
+  .grid-table td {
+    position: relative; /* Position divs relative to the table cell */
+    padding: 0; /* Remove padding to ensure borders are contiguous */
+  }
+
+  .grid-table td:hover {
+    background-color: lightgray; /* Change background color on hover */
+  }
+  
+  .grid-table td.clicked {
+    background-color: rgb(0, 132, 255); /* Change background color when clicked */
+  }
+  
+  .wall {
+    background-color: rgb(255, 255, 255); /* Color of walls */
+  }
+  
+  .wall-right {
+    position: absolute; /* Position divs within table cells */
+    width: 2px; /* Width of right wall */
+    height: 100%; /* Full height of cell */
+    right: 0; /* Align to right edge of cell */
+    top: 0; /* Align to top edge of cell */
+  }
+  
+  .wall-bottom {
+    position: absolute; /* Position divs within table cells */
+    width: 100%; /* Full width of cell */
+    height: 2px; /* Height of bottom wall */
+    bottom: 0; /* Align to bottom edge of cell */
+    left: 0; /* Align to left edge of cell */
+  }
+
+  .grid-table .highlight {
+    background-color: red;
+  }
+  
