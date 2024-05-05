@@ -1,8 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
-import Maze from './Components/Maze';
-import React from 'react';
-import Navbar from './Components/Navbar';
+import logo from "./logo.svg";
+import "./App.css";
+import Maze from "./Components/Maze";
+import React, { useState } from "react";
+import Navbar from "./Components/Navbar";
 
 function App() {
   return (
@@ -10,10 +10,7 @@ function App() {
       <header className="App-header">
         <h1>Amazing Maze Game</h1>
         {/* <Navbar /> */}
-        <Maze
-          width={15}
-          height={15}
-        />
+        <Maze width={4} height={4} />
       </header>
     </div>
   );

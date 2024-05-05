@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Kruskal } from "../Algorithms/Kruskal";
+import { BFS } from "../Algorithms/BFS";
 import "./Maze.css";
 
 const Maze = ({ width, height }) => {
   const [clickedCells, setClickedCells] = useState([]);
-  const [walls, setWalls] = useState(Kruskal(width, height));
+  const kruskal = Kruskal(width, height);
+  const [maze, setMaze] = useState(kruskal[0]);
+  const [walls, setWalls] = useState(kruskal[1]);
 
-  // Generate dummy data for the table according to kruskalMaze
   const generateData = () => {
     const data = [];
     for (let i = 0; i < height; i++) {
       const row = [];
       for (let j = 0; j < width; j++) {
-        row.push('*');
+        row.push("*");
       }
       data.push(row);
     }
@@ -34,8 +36,33 @@ const Maze = ({ width, height }) => {
     );
   };
 
+  // Check if there user has won the game
+  const hasWon = (winningPath) => {
+    if (!clickedCells.includes(0)) {
+      // Add the start cell to clicked cells
+      clickedCells.push(0);
+    }
+    if (!clickedCells.includes(width * height - 1)) {
+      // Add the end cell to clicked cells
+      clickedCells.push(width * height - 1);
+    }
+    console.log(clickedCells);
+    if (clickedCells.length !== winningPath.length) {
+      return false;
+    } else {
+      clickedCells.sort();
+      winningPath.sort();
+      for (let i = 0; i < clickedCells.length; i++) {
+        if (clickedCells[i] !== winningPath[i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+  };
+
   // Handle click event on cell
-  const handleClick = (cellIndex) => {
+  const handleClick = (cellIndex, winningPath) => {
     if (clickedCells.includes(cellIndex)) {
       // If cell is already clicked, remove it from clicked cells
       setClickedCells(clickedCells.filter((index) => index !== cellIndex));
@@ -43,19 +70,28 @@ const Maze = ({ width, height }) => {
       // If cell is not clicked, add it to clicked cells
       setClickedCells([...clickedCells, cellIndex]);
     }
+    if (hasWon(winningPath)) {
+      alert("You won!");
+    }
   };
 
   // Render the table rows
   const renderRows = () => {
     const data = generateData();
+    const winningPath = BFS(walls, width, height, data, hasWall);
     return data.map((row, rowIndex) => (
       <tr key={rowIndex}>
         {row.map((cell, cellIndex) => (
           <td
             key={cellIndex}
-            onClick={() => handleClick(getCellIndex(rowIndex, cellIndex))}
+            onClick={() =>
+              handleClick(getCellIndex(rowIndex, cellIndex), winningPath)
+            }
             className={`${
-              clickedCells.includes(getCellIndex(rowIndex, cellIndex))
+              getCellIndex(rowIndex, cellIndex) === 0 ||
+              getCellIndex(rowIndex, cellIndex) === width * height - 1
+                ? "start-end"
+                : clickedCells.includes(getCellIndex(rowIndex, cellIndex))
                 ? "clicked"
                 : ""
             }`}

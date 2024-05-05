@@ -1,8 +1,8 @@
 .grid-table {
     border-collapse: collapse;
     border: 2px solid rgb(255, 255, 255); /* Add border for the table */
-    width: 80%; /* Set table width to 100% of its container */
-    height: 80%; /* Set table height to 100% of its container */
+    width: 50%; /* Set table width to 100% of its container */
+    height: 50%; /* Set table height to 100% of its container */
     padding: 5px; /* Add padding around the table */
   }
   
@@ -17,6 +17,10 @@
   
   .grid-table td.clicked {
     background-color: rgb(0, 132, 255); /* Change background color when clicked */
+  }
+
+  .grid-table td.start-end {
+    background-color: rgb(223, 36, 151); /* Change background color for start cell */
   }
   
   .wall {
@@ -37,9 +41,5 @@
     height: 2px; /* Height of bottom wall */
     bottom: 0; /* Align to bottom edge of cell */
     left: 0; /* Align to left edge of cell */
-  }
-
-  .grid-table .highlight {
-    background-color: red;
   }
   
