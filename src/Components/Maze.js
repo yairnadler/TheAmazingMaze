@@ -5,9 +5,8 @@ import "./Maze.css";
 
 const Maze = ({ width, height }) => {
   const [clickedCells, setClickedCells] = useState([]);
-  const kruskal = Kruskal(width, height);
-  const [maze, setMaze] = useState(kruskal[0]);
-  const [walls, setWalls] = useState(kruskal[1]);
+  const [clicked, setClicked] = useState(false);
+  const [walls, setWalls] = useState(Kruskal(width, height));
 
   const generateData = () => {
     const data = [];
@@ -70,15 +69,13 @@ const Maze = ({ width, height }) => {
       // If cell is not clicked, add it to clicked cells
       setClickedCells([...clickedCells, cellIndex]);
     }
-    if (hasWon(winningPath)) {
-      alert("You won!");
-    }
   };
+
+  const data = generateData();
+  const winningPath = BFS(walls, width, height, data, hasWall);
 
   // Render the table rows
   const renderRows = () => {
-    const data = generateData();
-    const winningPath = BFS(walls, width, height, data, hasWall);
     return data.map((row, rowIndex) => (
       <tr key={rowIndex}>
         {row.map((cell, cellIndex) => (
@@ -115,10 +112,27 @@ const Maze = ({ width, height }) => {
     ));
   };
 
+  // Check if user has won the game
+  useEffect(() => {
+    if (hasWon(winningPath)) {
+      alert("You won!");
+    }
+  }, [clickedCells]);
+
   return (
-    <table className="grid-table">
-      <tbody>{renderRows()}</tbody>
-    </table>
+    <>
+      <table className="grid-table">
+        <tbody>{renderRows()}</tbody>
+      </table>
+      <button
+        className="clear-button"
+        onClick={() => {
+          setClickedCells([]);
+        }}
+      >
+        clear
+      </button>
+    </>
   );
 };
 

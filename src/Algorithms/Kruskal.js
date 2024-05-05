@@ -54,5 +54,5 @@ export function Kruskal(width, height) {
     }
   }
 
-  return [maze, walls];
+  return walls;
 }
