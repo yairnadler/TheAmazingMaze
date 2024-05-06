@@ -1,20 +1,12 @@
-import React, { useState } from "react";
-// import './Navbar.css';
+import React, { useState, useEffect } from "react";
+import './Navbar.css';
 
-const Navbar = ({ onDifficultyChange, onClear, onSubmit }) => {
-  const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
+const Navbar = (props) => {
+  const {difficulty, setDifficulty, setDifficultySelected} = props;
 
   const handleDifficultyChange = (event) => {
-    setSelectedDifficulty(event.target.value);
-    onDifficultyChange(event.target.value);
-  };
-
-  const handleClear = () => {
-    onClear();
-  };
-
-  const handleSubmit = () => {
-    onSubmit();
+    setDifficulty(event.target.value);
+    setDifficultySelected(true);
   };
 
   return (
@@ -22,20 +14,13 @@ const Navbar = ({ onDifficultyChange, onClear, onSubmit }) => {
       <p>DIFFICULTY</p>
       <div className="dropdown">
         <div className="dropdown-content">
-          <select value={selectedDifficulty} onChange={handleDifficultyChange}>
+          <select value={difficulty} onChange={handleDifficultyChange}>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
+            <option value="expert">Expert</option>
           </select>
         </div>
-      </div>
-      <div className="buttons-container">
-        <button className="clear-btn" onClick={handleClear}>
-          Clear
-        </button>
-        <button className="submit-btn" onClick={handleSubmit}>
-          Submit
-        </button>
       </div>
     </nav>
   );

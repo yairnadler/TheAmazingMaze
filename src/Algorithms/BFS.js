@@ -1,4 +1,4 @@
-export function BFS(walls, width, height, data, hasWall) {
+export function BFS(walls, width, height, hasWall) {
   const start = 0;
   const end = width * height - 1;
   const queue = [start];

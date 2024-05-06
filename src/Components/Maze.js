@@ -3,10 +3,8 @@ import { Kruskal } from "../Algorithms/Kruskal";
 import { BFS } from "../Algorithms/BFS";
 import "./Maze.css";
 
-const Maze = ({ width, height }) => {
+const Maze = ({ width, height, walls, setWalls, difficulty }) => {
   const [clickedCells, setClickedCells] = useState([]);
-  const [clicked, setClicked] = useState(false);
-  const [walls, setWalls] = useState(Kruskal(width, height));
 
   const generateData = () => {
     const data = [];
@@ -45,7 +43,7 @@ const Maze = ({ width, height }) => {
       // Add the end cell to clicked cells
       clickedCells.push(width * height - 1);
     }
-    console.log(clickedCells);
+
     if (clickedCells.length !== winningPath.length) {
       return false;
     } else {
@@ -72,7 +70,7 @@ const Maze = ({ width, height }) => {
   };
 
   const data = generateData();
-  const winningPath = BFS(walls, width, height, data, hasWall);
+  const winningPath = BFS(walls, width, height, hasWall);
 
   // Render the table rows
   const renderRows = () => {
@@ -124,14 +122,25 @@ const Maze = ({ width, height }) => {
       <table className="grid-table">
         <tbody>{renderRows()}</tbody>
       </table>
-      <button
-        className="clear-button"
-        onClick={() => {
-          setClickedCells([]);
-        }}
-      >
-        clear
-      </button>
+      <div>
+        <button
+          className="button"
+          onClick={() => {
+            setClickedCells([]);
+          }}
+        >
+          clear
+        </button>
+        <button
+          className="button"
+          onClick={() => {
+            setWalls(Kruskal(width, height));
+            setClickedCells([]);
+          }}
+        >
+          new maze
+        </button>
+      </div>
     </>
   );
 };
