@@ -35,6 +35,11 @@ function App() {
           setHeight(20);
           setWalls(Kruskal(20, 20));
           break;
+        case "insane":
+          setWidth(30);
+          setHeight(30);
+          setWalls(Kruskal(30, 30));
+          break;
       }
       setDifficultySelected(false);
     }
