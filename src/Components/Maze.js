@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import { Kruskal } from "../Algorithms/Kruskal";
 import { BFS } from "../Algorithms/BFS";
 import "./Maze.css";
+import "react-toastify/dist/ReactToastify.css";
 
-const Maze = ({ width, height, walls, setWalls, difficulty }) => {
+const Maze = ({ width, height, walls, setWalls }) => {
+  const toastId = React.useRef(null);
   const [clickedCells, setClickedCells] = useState([]);
 
   const generateData = () => {
@@ -113,7 +116,21 @@ const Maze = ({ width, height, walls, setWalls, difficulty }) => {
   // Check if user has won the game
   useEffect(() => {
     if (hasWon(winningPath)) {
-      alert("You won!");
+      if (!toast.isActive(toastId.current)) {
+        toastId.current = toast("Congratulations! You solved the maze!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          onClose: () => {
+            setClickedCells([]);
+          },
+        });
+      }
     }
   }, [clickedCells]);
 
@@ -141,6 +158,7 @@ const Maze = ({ width, height, walls, setWalls, difficulty }) => {
           new maze
         </button>
       </div>
+      <ToastContainer />
     </>
   );
 };
