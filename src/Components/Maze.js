@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
+import Hint from "./Hint";
 import { ToastContainer, toast } from "react-toastify";
 import { Kruskal } from "../Algorithms/Kruskal";
 import { BFS } from "../Algorithms/BFS";
+import { NumericSort } from "../Constants/NumericSort";
 import "./Maze.css";
 import "react-toastify/dist/ReactToastify.css";
 
 const Maze = ({ width, height, walls, setWalls }) => {
   const toastId = React.useRef(null);
   const [clickedCells, setClickedCells] = useState([]);
+  const [hintCell, setHintCell] = useState(-1);
 
   const generateData = () => {
     const data = [];
@@ -50,8 +53,7 @@ const Maze = ({ width, height, walls, setWalls }) => {
     if (clickedCells.length !== winningPath.length) {
       return false;
     } else {
-      clickedCells.sort();
-      winningPath.sort();
+      clickedCells.sort(NumericSort);
       for (let i = 0; i < clickedCells.length; i++) {
         if (clickedCells[i] !== winningPath[i]) {
           return false;
@@ -73,7 +75,7 @@ const Maze = ({ width, height, walls, setWalls }) => {
   };
 
   const data = generateData();
-  const winningPath = BFS(walls, width, height, hasWall);
+  const winningPath = BFS(walls, width, height, hasWall).sort(NumericSort);
 
   // Render the table rows
   const renderRows = () => {
@@ -89,6 +91,8 @@ const Maze = ({ width, height, walls, setWalls }) => {
               getCellIndex(rowIndex, cellIndex) === 0 ||
               getCellIndex(rowIndex, cellIndex) === width * height - 1
                 ? "start-end"
+                : getCellIndex(rowIndex, cellIndex) === hintCell
+                ? "hint-cell"
                 : clickedCells.includes(getCellIndex(rowIndex, cellIndex))
                 ? "clicked"
                 : ""
@@ -157,6 +161,14 @@ const Maze = ({ width, height, walls, setWalls }) => {
         >
           new maze
         </button>
+        <Hint
+          clickedCells={clickedCells.toSorted(NumericSort)}
+          winningPath={winningPath}
+          width={width}
+          hintCell={hintCell}
+          setHintCell={setHintCell}
+        />
+        {console.log(hintCell)}
       </div>
       <ToastContainer />
     </>

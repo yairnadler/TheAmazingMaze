@@ -23,6 +23,10 @@
   .grid-table td.start-end {
     background-color: rgb(231, 5, 175); /* Change background color for start cell */
   }
+
+  .grid-table td.hint-cell {
+    background-color: rgb(230, 230, 0); /* Change background color for hint cell */
+  }
   
   .wall {
     background-color: rgb(255, 255, 255); /* Color of walls */
