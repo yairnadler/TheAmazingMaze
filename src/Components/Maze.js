@@ -138,6 +138,7 @@ const Maze = ({ width, height, walls, setWalls }) => {
           theme: "light",
           onClose: () => {
             setClickedCells([]);
+            setReleventCells([]);
           },
         });
       }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Hint = ({ releventCells, winningPath, setHintCell }) => {
   const rearrangedReleventCells = [];
@@ -21,6 +21,7 @@ const Hint = ({ releventCells, winningPath, setHintCell }) => {
 
   const handleClick = () => {
     setHintCell(hint);
+    console.log(releventCells, winningPath, hint, lastCommonCell);
     setTimeout(() => {
       hint = -1;
       setHintCell(hint);
