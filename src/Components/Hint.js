@@ -1,34 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-const Hint = ({ clickedCells, winningPath, width, setHintCell }) => {
-  const releventCells = clickedCells.filter((cell) =>
-    winningPath.includes(cell)
-  );
-  for (let i = 1; i < releventCells.length; i++) {
-    if (
-      Math.abs(releventCells[i] - releventCells[i - 1]) !== 1 &&
-      Math.abs(releventCells[i] - releventCells[i - 1]) !== width
-    ) {
-      releventCells.pop(i)
+const Hint = ({ releventCells, winningPath, setHintCell }) => {
+  const rearrangedReleventCells = [];
+  // update releventCells so that is in the order of the winning path
+  for (const cell of winningPath) {
+    const index = releventCells.indexOf(cell);
+    if (index !== -1) {
+        rearrangedReleventCells.push(cell);
     }
   }
-  let index = 0;
-  for (let i = 0; i < releventCells.length; i++) {
-    // if the clicked cell is in the winning path and is a neighbour of the last common cell
-    if (
-      winningPath.includes(releventCells[i]) &&
-      (Math.abs(releventCells[i] - winningPath[i - 1]) === 1 ||
-        Math.abs(releventCells[i] - winningPath[i - 1]) === width)
-    ) {
-      index = i;
+  // find the index of the last common cell between the clicked cells and the winning path
+  let lastCommonCell = -1;
+
+  for (let i = 0; i < rearrangedReleventCells.length; i++) {
+    if (rearrangedReleventCells[i] === winningPath[i]) {
+      lastCommonCell = i;
     }
   }
-
-  let hint = winningPath[winningPath.indexOf(releventCells[index]) + 1];
+  let hint = winningPath[lastCommonCell + 1];
 
   const handleClick = () => {
     setHintCell(hint);
-    console.log(releventCells, winningPath, hint, index);
     setTimeout(() => {
       hint = -1;
       setHintCell(hint);

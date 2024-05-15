@@ -11,6 +11,7 @@ const Maze = ({ width, height, walls, setWalls }) => {
   const toastId = React.useRef(null);
   const [clickedCells, setClickedCells] = useState([]);
   const [hintCell, setHintCell] = useState(-1);
+  const [releventCells, setReleventCells] = useState([]);
 
   const generateData = () => {
     const data = [];
@@ -69,9 +70,13 @@ const Maze = ({ width, height, walls, setWalls }) => {
     if (clickedCells.includes(cellIndex)) {
       // If cell is already clicked, remove it from clicked cells
       setClickedCells(clickedCells.filter((index) => index !== cellIndex));
+      setReleventCells(releventCells.filter((index) => index !== cellIndex));
     } else {
       // If cell is not clicked, add it to clicked cells
       setClickedCells([...clickedCells, cellIndex]);
+      if (winningPath.includes(cellIndex)) {
+        setReleventCells([...releventCells, cellIndex])
+      }
     }
   };
 
@@ -149,6 +154,7 @@ const Maze = ({ width, height, walls, setWalls }) => {
           className="button"
           onClick={() => {
             setClickedCells([]);
+            setReleventCells([]);
           }}
         >
           clear
@@ -158,18 +164,15 @@ const Maze = ({ width, height, walls, setWalls }) => {
           onClick={() => {
             setWalls(Kruskal(width, height));
             setClickedCells([]);
+            setReleventCells([]);
           }}
         >
           new maze
         </button>
         <Hint
-          clickedCells={clickedCells.slice(2)}
+          releventCells={releventCells}
           winningPath={winningPath.slice(1, winningPath.length - 1)}
-          width={width}
-          hintCell={hintCell}
           setHintCell={setHintCell}
-          walls={walls}
-          hasWall={hasWall}
         />
       </div>
       <ToastContainer />

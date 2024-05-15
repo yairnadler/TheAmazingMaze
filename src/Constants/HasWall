@@ -1,9 +1,0 @@
-  // Check if there is a wall between two cells
-  export function HasWall(cellIndex, direction) {
-    const neighborIndex = cellIndex + direction;
-    return walls.some(
-      ([from, to]) =>
-        (from === cellIndex && to === neighborIndex) ||
-        (from === neighborIndex && to === cellIndex)
-    );
-  };
