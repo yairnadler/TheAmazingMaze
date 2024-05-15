@@ -49,13 +49,14 @@ const Maze = ({ width, height, walls, setWalls }) => {
       // Add the end cell to clicked cells
       clickedCells.push(width * height - 1);
     }
-
+    
     if (clickedCells.length !== winningPath.length) {
       return false;
     } else {
-      clickedCells.sort(NumericSort);
-      for (let i = 0; i < clickedCells.length; i++) {
-        if (clickedCells[i] !== winningPath[i]) {
+      let sortedClickedCells = clickedCells.toSorted(NumericSort);
+      let sortedWinningPath = winningPath.toSorted(NumericSort);
+      for (let i = 0; i < sortedClickedCells.length; i++) {
+        if (sortedClickedCells[i] !== sortedWinningPath[i]) {
           return false;
         }
       }
@@ -64,7 +65,7 @@ const Maze = ({ width, height, walls, setWalls }) => {
   };
 
   // Handle click event on cell
-  const handleClick = (cellIndex, winningPath) => {
+  const handleClick = (cellIndex) => {
     if (clickedCells.includes(cellIndex)) {
       // If cell is already clicked, remove it from clicked cells
       setClickedCells(clickedCells.filter((index) => index !== cellIndex));
@@ -75,7 +76,7 @@ const Maze = ({ width, height, walls, setWalls }) => {
   };
 
   const data = generateData();
-  const winningPath = BFS(walls, width, height, hasWall).sort(NumericSort);
+  const winningPath = BFS(walls, width, height, hasWall);
 
   // Render the table rows
   const renderRows = () => {
@@ -162,13 +163,14 @@ const Maze = ({ width, height, walls, setWalls }) => {
           new maze
         </button>
         <Hint
-          clickedCells={clickedCells.toSorted(NumericSort)}
-          winningPath={winningPath}
+          clickedCells={clickedCells.slice(2)}
+          winningPath={winningPath.slice(1, winningPath.length - 1)}
           width={width}
           hintCell={hintCell}
           setHintCell={setHintCell}
+          walls={walls}
+          hasWall={hasWall}
         />
-        {console.log(hintCell)}
       </div>
       <ToastContainer />
     </>
