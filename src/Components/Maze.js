@@ -8,7 +8,7 @@ import "./Maze.css";
 import "react-toastify/dist/ReactToastify.css";
 
 const Maze = forwardRef((props, ref) => {
-  const { width, height, walls, setWalls } = props;
+  const { width, height, walls, setWalls, difficulty } = props;
   const toastId = React.useRef(null);
   const [hintCell, setHintCell] = useState(-1);
   const [releventCells, setReleventCells] = useState([]);
@@ -155,7 +155,7 @@ const Maze = forwardRef((props, ref) => {
 
   return (
     <>
-      <table className="grid-table">
+      <table className={`grid-table-${difficulty}`}>
         <tbody>{renderRows()}</tbody>
       </table>
       <div>

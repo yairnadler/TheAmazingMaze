@@ -64,6 +64,7 @@ function App() {
           height={height}
           walls={walls}
           setWalls={setWalls}
+          difficulty={difficulty}
           ref = {mazeRef}
         />
       </header>

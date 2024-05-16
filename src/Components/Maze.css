@@ -1,33 +1,181 @@
 
-  .grid-table {
-    border-collapse: collapse;
-    border: 3px solid rgb(255, 255, 255); /* Add border for the table */
-    width: 50%; /* Set table width to 100% of its container */
-    height: 50%; /* Set table height to 100% of its container */
-    padding: 5px; /* Add padding around the table */
+  /*conditional sizing for grid table depending on the difficulty*/
+
+  /*CASE: EASY*/
+  .grid-table-easy{
+    width: 35%; /* Full width of container */
+    height: 35%; /* Full height of container */
+    border: 3px solid rgb(255, 255, 255); /* Border around each cell */
+    border-collapse: collapse; /* Collapse borders to ensure contiguous walls */
+  }
+
+  .grid-table-easy td {
+
+    padding: 0; /* Remove padding to ensure borders are contiguous */
+    position: relative; /* Position divs relative to the table cell */
   }
   
-  .grid-table td {
+  .grid-table-easy td {
     position: relative; /* Position divs relative to the table cell */
     padding: 0; /* Remove padding to ensure borders are contiguous */
   }
 
-  .grid-table td:hover {
+  .grid-table-easy td:hover {
     background-color: lightgray; /* Change background color on hover */
   }
   
-  .grid-table td.clicked {
+  .grid-table-easy td.clicked {
     background-color: rgb(0, 132, 255); /* Change background color when clicked */
   }
 
-  .grid-table td.start-end {
+  .grid-table-easy td.start-end {
     background-color: rgb(231, 5, 175); /* Change background color for start cell */
   }
 
-  .grid-table td.hint-cell {
+  .grid-table-easy td.hint-cell {
     background-color: rgb(230, 230, 0); /* Change background color for hint cell */
   }
   
+  /*CASE: MEDIUM*/
+  .grid-table-medium{
+    width: 50%; /* Full width of container */
+    height: 50%; /* Full height of container */
+    border: 3px solid rgb(255, 255, 255); /* Border around each cell */
+    border-collapse: collapse; /* Collapse borders to ensure contiguous walls */
+  }
+
+  .grid-table-medium td {
+
+    padding: 0; /* Remove padding to ensure borders are contiguous */
+    position: relative; /* Position divs relative to the table cell */
+  }
+  
+  .grid-table-medium td {
+    position: relative; /* Position divs relative to the table cell */
+    padding: 0; /* Remove padding to ensure borders are contiguous */
+  }
+
+  .grid-table-medium td:hover {
+    background-color: lightgray; /* Change background color on hover */
+  }
+  
+  .grid-table-medium td.clicked {
+    background-color: rgb(0, 132, 255); /* Change background color when clicked */
+  }
+
+  .grid-table-medium td.start-end {
+    background-color: rgb(231, 5, 175); /* Change background color for start cell */
+  }
+
+  .grid-table-medium td.hint-cell {
+    background-color: rgb(230, 230, 0); /* Change background color for hint cell */
+  }
+
+  /*CASE: HARD*/
+  .grid-table-hard{
+    width: 60%; /* Full width of container */
+    height: 60%; /* Full height of container */
+    border: 3px solid rgb(255, 255, 255); /* Border around each cell */
+    border-collapse: collapse; /* Collapse borders to ensure contiguous walls */
+  }
+
+  .grid-table-hard td {
+
+    padding: 0; /* Remove padding to ensure borders are contiguous */
+    position: relative; /* Position divs relative to the table cell */
+  }
+  
+  .grid-table-hard td {
+    position: relative; /* Position divs relative to the table cell */
+    padding: 0; /* Remove padding to ensure borders are contiguous */
+  }
+
+  .grid-table-hard td:hover {
+    background-color: lightgray; /* Change background color on hover */
+  }
+  
+  .grid-table-hard td.clicked {
+    background-color: rgb(0, 132, 255); /* Change background color when clicked */
+  }
+
+  .grid-table-hard td.start-end {
+    background-color: rgb(231, 5, 175); /* Change background color for start cell */
+  }
+
+  .grid-table-hard td.hint-cell {
+    background-color: rgb(230, 230, 0); /* Change background color for hint cell */
+  }
+
+  /*CASE: EXPERT*/
+  .grid-table-expert{
+    width: 70%; /* Full width of container */
+    height: 70%; /* Full height of container */
+    border: 3px solid rgb(255, 255, 255); /* Border around each cell */
+    border-collapse: collapse; /* Collapse borders to ensure contiguous walls */
+  }
+
+  .grid-table-expert td {
+
+    padding: 0; /* Remove padding to ensure borders are contiguous */
+    position: relative; /* Position divs relative to the table cell */
+  }
+  
+  .grid-table-expert td {
+    position: relative; /* Position divs relative to the table cell */
+    padding: 0; /* Remove padding to ensure borders are contiguous */
+  }
+
+  .grid-table-expert td:hover {
+    background-color: lightgray; /* Change background color on hover */
+  }
+  
+  .grid-table-expert td.clicked {
+    background-color: rgb(0, 132, 255); /* Change background color when clicked */
+  }
+
+  .grid-table-expert td.start-end {
+    background-color: rgb(231, 5, 175); /* Change background color for start cell */
+  }
+
+  .grid-table-expert td.hint-cell {
+    background-color: rgb(230, 230, 0); /* Change background color for hint cell */
+  }
+
+  /*CASE: INSANE*/
+  .grid-table-insane{
+    width: 80%; /* Full width of container */
+    height: 80%; /* Full height of container */
+    border: 3px solid rgb(255, 255, 255); /* Border around each cell */
+    border-collapse: collapse; /* Collapse borders to ensure contiguous walls */
+  }
+
+  .grid-table-insane td {
+
+    padding: 0; /* Remove padding to ensure borders are contiguous */
+    position: relative; /* Position divs relative to the table cell */
+  }
+  
+  .grid-table-insane td {
+    position: relative; /* Position divs relative to the table cell */
+    padding: 0; /* Remove padding to ensure borders are contiguous */
+  }
+
+  .grid-table-insane td:hover {
+    background-color: lightgray; /* Change background color on hover */
+  }
+  
+  .grid-table-insane td.clicked {
+    background-color: rgb(0, 132, 255); /* Change background color when clicked */
+  }
+
+  .grid-table-insane td.start-end {
+    background-color: rgb(231, 5, 175); /* Change background color for start cell */
+  }
+
+  .grid-table-insane td.hint-cell {
+    background-color: rgb(230, 230, 0); /* Change background color for hint cell */
+  }
+
   .wall {
     background-color: rgb(255, 255, 255); /* Color of walls */
   }
