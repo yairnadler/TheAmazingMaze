@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useImperativeHandle, forwardRef } from "react";
 import Hint from "./Hint";
 import { ToastContainer, toast } from "react-toastify";
 import { Kruskal } from "../Algorithms/Kruskal";
@@ -7,11 +7,19 @@ import { NumericSort } from "../Constants/NumericSort";
 import "./Maze.css";
 import "react-toastify/dist/ReactToastify.css";
 
-const Maze = ({ width, height, walls, setWalls }) => {
+const Maze = forwardRef((props, ref) => {
+  const { width, height, walls, setWalls } = props;
   const toastId = React.useRef(null);
-  const [clickedCells, setClickedCells] = useState([]);
   const [hintCell, setHintCell] = useState(-1);
   const [releventCells, setReleventCells] = useState([]);
+  const [clickedCells, setClickedCells] = useState([]);
+  
+  useImperativeHandle(ref, () => ({
+    clearCells(){
+      setClickedCells([]);
+      setReleventCells([]); 
+    }
+  }));
 
   const generateData = () => {
     const data = [];
@@ -179,6 +187,6 @@ const Maze = ({ width, height, walls, setWalls }) => {
       <ToastContainer />
     </>
   );
-};
+});
 
 export default Maze;
