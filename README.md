@@ -5,4 +5,3 @@
  <p>BFS is used to find the winning path.</p>
  <p>TODO:</p>
  <p>1. have the hint button follow next to the maze componnent</p>
- <p>2. hint for invalid cells</p>
