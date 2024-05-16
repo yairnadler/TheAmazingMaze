@@ -183,6 +183,7 @@
 
   .wall {
     background-color: rgb(255, 255, 255); /* Color of walls */
+    transition: background-color 0.5s; /* Transition wall color changes */
   }
   
   .wall-right {
