@@ -147,8 +147,8 @@
 
   /*CASE: INSANE*/
   .grid-table-insane{
-    width: 80%; /* Full width of container */
-    height: 80%; /* Full height of container */
+    width: 90%; /* Full width of container */
+    height: 90%; /* Full height of container */
     border: 3px solid rgb(255, 255, 255); /* Border around each cell */
     border-collapse: collapse; /* Collapse borders to ensure contiguous walls */
     transition: width 0.5s, height 0.5s; /* Transition width and height changes */

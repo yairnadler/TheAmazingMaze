@@ -8,8 +8,8 @@ import { Kruskal } from "./Algorithms/Kruskal";
 function App() {
   const [difficulty, setDifficulty] = useState("easy");
   const [difficultySelected, setDifficultySelected] = useState(false);
-  const [width, setWidth] = useState(5);
-  const [height, setHeight] = useState(5);
+  const [width, setWidth] = useState(10);
+  const [height, setHeight] = useState(10);
   const [walls, setWalls] = useState(Kruskal(width, height));
   const mazeRef = useRef();
 
@@ -17,33 +17,33 @@ function App() {
     if (difficultySelected) {
       switch (difficulty) {
         case "easy":
-          setWidth(5);
-          setHeight(5);
-          setWalls(Kruskal(5, 5));
-          mazeRef.current.clearCells();
-          break;
-        case "medium":
           setWidth(10);
           setHeight(10);
           setWalls(Kruskal(10, 10));
           mazeRef.current.clearCells();
           break;
-        case "hard":
+        case "medium":
           setWidth(15);
           setHeight(15);
           setWalls(Kruskal(15, 15));
           mazeRef.current.clearCells();
           break;
-        case "expert":
+        case "hard":
           setWidth(20);
           setHeight(20);
           setWalls(Kruskal(20, 20));
           mazeRef.current.clearCells();
           break;
-        case "insane":
+        case "expert":
           setWidth(30);
           setHeight(30);
           setWalls(Kruskal(30, 30));
+          mazeRef.current.clearCells();
+          break;
+        case "insane":
+          setWidth(40);
+          setHeight(40);
+          setWalls(Kruskal(40, 40));
           mazeRef.current.clearCells();
           break;
       }
