@@ -6,7 +6,7 @@ import Navbar from "./Components/Navbar";
 import { Kruskal } from "./Algorithms/Kruskal";
 
 function App() {
-  const [difficulty, setDifficulty] = useState();
+  const [difficulty, setDifficulty] = useState("easy");
   const [difficultySelected, setDifficultySelected] = useState(false);
   const [width, setWidth] = useState(5);
   const [height, setHeight] = useState(5);
